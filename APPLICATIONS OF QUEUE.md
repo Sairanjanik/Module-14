@@ -1,31 +1,31 @@
-# Exp.No:40  
-## APPLICATIONS OF QUEUE
+# Exp.No:35  
+## TOWER OF HANOI
 
 ---
 
 ### AIM  
-To write a Python program to implement CPU Process Scheduling using a queue.
+To write a Python program to implement **Tower of Hanoi** and display all the moves of the disks using a recursive function.  
+Consider the names of the tower pegs as A, B, C. Get the number of disks value from the user.
 
 ---
 
 ### ALGORITHM  
 
-1. Start the program.  
-2. Define the function `CalculateWaitingTime(at, bt, N)`.  
-3. Initialize a list `wt` of size `N` with all values set to 0.  
-4. Set `wt[0] = 0` for the first process.  
-5. Print the table header: "P.No.", "Arrival Time", "Burst Time", "Waiting Time".  
-6. Print the values for the first process.  
-7. For each process from index `1` to `N-1`:  
-   - Calculate `wt[i] = (at[i - 1] + bt[i - 1] + wt[i - 1]) - at[i]`.  
-   - Print the process number, arrival time, burst time, and waiting time.  
-8. Initialize `total_waiting_time = 0`.  
-9. Add up all waiting times.  
-10. Calculate average waiting time as `average = total_waiting_time / N`.  
-11. Print the average waiting time.  
-12. Get burst times as input from the user for 5 processes.  
-13. Call `CalculateWaitingTime()` with `at`, `bt`, and `N`.  
-14. End the program.
+1. **Start the program.**
+2. **Input** the number of disks `n`.
+3. **Print** the number of disks.
+4. Define a **recursive function** `TowerOfHanoi(n, source, destination, auxiliary)`:
+   - If `n == 1`:
+     - Print: "Move disk from source to destination".
+   - Else:
+     - Call `TowerOfHanoi(n - 1, source, auxiliary, destination)`  
+       → Move `n-1` disks from source to auxiliary using destination as helper.
+     - Print: "Move disk from source to destination"  
+       → Move the largest disk to the destination.
+     - Call `TowerOfHanoi(n - 1, auxiliary, destination, source)`  
+       → Move `n-1` disks from auxiliary to destination using source as helper.
+5. Call `TowerOfHanoi(n, 'A', 'C', 'B')` to start the process.
+6. **End the program.**
 
 ---
 
@@ -33,10 +33,23 @@ To write a Python program to implement CPU Process Scheduling using a queue.
 
 ```
 
+def TowerOfHanoi(n , source, destination, auxiliary):
+	
+	if(n>0):
+	    TowerOfHanoi(n-1, source, auxiliary, destination)
+	    print ("Move disk from",source,"to",destination)
+	    TowerOfHanoi(n-1, auxiliary, destination, source)
+
+n=int(input())		
+print("No. of disks =",n)
+
+
 ```
 
 ### OUTPUT
 
+![image](https://github.com/user-attachments/assets/7631c8ff-b91d-4f78-9201-c8a16512e567)
+
 
 ### RESULT
-
+The program displays all the steps to move the given number of disks from peg A to peg C following the rules of the Tower of Hanoi puzzle using a recursive approach.
